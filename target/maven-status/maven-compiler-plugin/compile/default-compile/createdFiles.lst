@@ -1,0 +1,5 @@
+com\lengcz\springbootocr\config\OcrProperties.class
+com\lengcz\springbootocr\SpringbootOcrApplication.class
+com\lengcz\springbootocr\config\SwaggerConfig.class
+com\lengcz\springbootocr\controller\OcrController.class
+com\lengcz\springbootocr\utils\ResponseUtil.class
