@@ -3,21 +3,9 @@
 #### 介绍
 用于图片转文本
 
-#### 软件架构
-软件架构说明
+相关内容可见博客
+[springboot框架(5):ocr图片转文本](https://blog.csdn.net/u011628753/article/details/124155062)
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 参与贡献
 
