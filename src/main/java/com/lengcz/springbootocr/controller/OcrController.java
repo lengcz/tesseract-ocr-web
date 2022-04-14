@@ -26,13 +26,13 @@ public class OcrController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "hello";
+        return "hello ocr";
     }
 
     @ApiOperation(value = "图片识别", notes = "图片识别")
     @PostMapping(value = "/ocr", headers = "content-type=multipart/form-data")
     @ResponseBody
-    public Object ocr(@ApiParam("文件") @RequestParam(value = "images") MultipartFile images, @ApiParam(value = "语言包", defaultValue = "chi_sim") @RequestParam(name = "language", defaultValue = "eng") String language) throws Exception {
+    public Object ocr(@ApiParam("文件") @RequestParam(value = "images") MultipartFile images, @ApiParam(name="language",value = "语言包(默认:chi_sim 简体中文),支持数字中文简体(chi_sim),中文简体竖版(chi_sim_vert)，繁体((chi_tra))，繁体((chi_tra_vert))，英文(eng)") @RequestParam(name = "language", defaultValue = "chi_sim") String language) throws Exception {
         if (null == images) {
             return ResponseUtil.badArgument();
         }
@@ -51,7 +51,7 @@ public class OcrController {
             String code = instance.doOCR(testImage);
             return ResponseUtil.ok(code);
         }
-        return ResponseUtil.fail();
+        return ResponseUtil.unsupportedFormat();
     }
 
 

@@ -1,7 +1,7 @@
 servlet:
   multipart:
     max-file-size: 128MB #上传文件总大值
-    max-request-size: 10MB  #单个文件的最大值
+    max-request-size: 20MB  #单个文件的最大值
 
 ocr:
   tessdata: /usr/local/share/tessdata/   #语言包路径

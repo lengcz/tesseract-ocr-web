@@ -114,6 +114,10 @@ public class ResponseUtil {
         return fail(402, "参数值不对");
     }
 
+    public static Object unsupportedFormat() {
+        return fail(403, "不支持的格式");
+    }
+
     public static Object unlogin() {
         return fail(501, "请登录");
     }
