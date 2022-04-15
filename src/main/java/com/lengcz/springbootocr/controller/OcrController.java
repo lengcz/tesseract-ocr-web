@@ -32,11 +32,15 @@ public class OcrController {
     @ApiOperation(value = "图片识别", notes = "图片识别")
     @PostMapping(value = "/ocr", headers = "content-type=multipart/form-data")
     @ResponseBody
-    public Object ocr(@ApiParam("文件") @RequestParam(value = "images") MultipartFile images, @ApiParam(name="language",value = "语言包(默认:chi_sim 简体中文),支持数字中文简体(chi_sim),中文简体竖版(chi_sim_vert)，繁体((chi_tra))，繁体((chi_tra_vert))，英文(eng)") @RequestParam(name = "language", defaultValue = "chi_sim") String language) throws Exception {
-        if (null == images) {
+    public Object ocr(@ApiParam("文件") @RequestParam(value = "image") MultipartFile image,
+                      @ApiParam(name = "language",
+                              value = "语言包(默认:chi_sim 简体中文),支持数字中文简体(chi_sim),中文简体竖版(chi_sim_vert)，" +
+                                      "繁体((chi_tra))，繁体((chi_tra_vert))，英文(eng)")
+                      @RequestParam(name = "language", defaultValue = "chi_sim") String language) throws Exception {
+        if (null == image) {
             return ResponseUtil.badArgument();
         }
-        String fileName = images.getOriginalFilename();    // 文件名称
+        String fileName = image.getOriginalFilename();    // 文件名称
         String suffixName = fileName.substring(fileName.lastIndexOf("."));    // 图片后缀
         // 判断文件后缀是否为后端默认的后缀名
         if (isImageFile(suffixName)) {
@@ -47,7 +51,7 @@ public class OcrController {
 //            instance.setLanguage("chi_sim");
             instance.setLanguage(language);
 
-            BufferedImage testImage = ImageIO.read(images.getInputStream());
+            BufferedImage testImage = ImageIO.read(image.getInputStream());
             String code = instance.doOCR(testImage);
             return ResponseUtil.ok(code);
         }
@@ -63,7 +67,7 @@ public class OcrController {
         }
         fileName = fileName.toLowerCase();
 
-        String[] img_type =ocrProperties.getFile_suffix();
+        String[] img_type = ocrProperties.getFile_suffix();
 
         for (String type : img_type) {
             if (fileName.endsWith(type)) {
